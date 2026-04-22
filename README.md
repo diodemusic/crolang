@@ -1,2 +1,2 @@
 # crolang
-crolang is my programming language
+crolang is a programming language for birds

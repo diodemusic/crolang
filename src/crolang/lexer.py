@@ -16,7 +16,23 @@ class Scanner:
         self.start: int = 0
         self.current: int = 0
 
-    def at_end(self) -> bool: ...
+    def at_end(self) -> bool:
+        return self.current >= len(self.source.text)
+
+    def advance(self) -> str:
+        if self.at_end():
+            raise IndexError
+
+        char: str = self.source.text[self.current]
+        self.current += 1
+
+        return char
+
+    def peek(self) -> str:
+        if self.at_end():
+            return "\0"
+
+        return self.source.text[self.current]
 
     def scan_token(self) -> None: ...
 

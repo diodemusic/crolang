@@ -1,0 +1,30 @@
+[project]
+name = "crolang"
+version = "0.1.0"
+description = "crolang is my programming language"
+readme = "README.md"
+authors = [
+    { name = "diodemusic", email = "diodemusicuk@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+crolang = "crolang.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.7,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39.3",
+    "pytest>=9.0.3",
+]
+
+[tool.basedpyright]
+include = ["src", "tests"]
+typeCheckingMode = "all"
+pythonVersion = "3.14"
+venvPath = "."
+venv = ".venv"

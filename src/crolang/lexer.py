@@ -34,7 +34,29 @@ class Scanner:
 
         return self.source.text[self.current]
 
-    def scan_token(self) -> None: ...
+    def construct_span(self) -> Span:
+        return Span(start=self.start, end=self.current, source=self.source)
+
+    def scan_token(self) -> None:
+        char: str = self.advance()
+
+        match char:
+            case "{":
+                self.tokens.append(LeftBrace(span=self.construct_span()))
+            case "}":
+                self.tokens.append(RightBrace(span=self.construct_span()))
+            case "(":
+                self.tokens.append(LeftParenthesis(span=self.construct_span()))
+            case ")":
+                self.tokens.append(RightParenthesis(span=self.construct_span()))
+            case ",":
+                self.tokens.append(Comma(span=self.construct_span()))
+            case ".":
+                self.tokens.append(Dot(span=self.construct_span()))
+            case ":":
+                self.tokens.append(Colon(span=self.construct_span()))
+            case _:
+                ...
 
     def scan_tokens(self) -> None:
         while not self.at_end():
@@ -51,6 +73,30 @@ def lex(source: SourceFile) -> list[Token]:
 
 @dataclass(frozen=True)
 class LeftBrace(Token): ...
+
+
+@dataclass(frozen=True)
+class RightBrace(Token): ...
+
+
+@dataclass(frozen=True)
+class LeftParenthesis(Token): ...
+
+
+@dataclass(frozen=True)
+class RightParenthesis(Token): ...
+
+
+@dataclass(frozen=True)
+class Comma(Token): ...
+
+
+@dataclass(frozen=True)
+class Dot(Token): ...
+
+
+@dataclass(frozen=True)
+class Colon(Token): ...
 
 
 @dataclass(frozen=True)

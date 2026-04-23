@@ -55,6 +55,12 @@ class Scanner:
                 self.tokens.append(Dot(span=self.construct_span()))
             case ":":
                 self.tokens.append(Colon(span=self.construct_span()))
+            case "!":
+                if self.peek() == "=":
+                    _ = self.advance()
+                    self.tokens.append(NotEquals(span=self.construct_span()))
+                else:
+                    self.tokens.append(Bang(span=self.construct_span()))
             case _:
                 ...
 
@@ -107,3 +113,11 @@ class IntLiteral(Token):
 @dataclass(frozen=True)
 class Identifier(Token):
     name: str
+
+
+@dataclass(frozen=True)
+class Bang(Token): ...
+
+
+@dataclass(frozen=True)
+class NotEquals(Token): ...

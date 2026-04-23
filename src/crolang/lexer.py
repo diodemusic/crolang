@@ -37,6 +37,13 @@ class Scanner:
     def construct_span(self) -> Span:
         return Span(start=self.start, end=self.current, source=self.source)
 
+    def matches(self, expected: str) -> bool:
+        if self.peek() == expected:
+            _ = self.advance()
+            return True
+        else:
+            return False
+
     def scan_token(self) -> None:
         char: str = self.advance()
 
@@ -56,8 +63,7 @@ class Scanner:
             case ":":
                 self.tokens.append(Colon(span=self.construct_span()))
             case "!":
-                if self.peek() == "=":
-                    _ = self.advance()
+                if self.matches(expected="="):
                     self.tokens.append(NotEquals(span=self.construct_span()))
                 else:
                     self.tokens.append(Bang(span=self.construct_span()))

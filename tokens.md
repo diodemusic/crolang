@@ -8,7 +8,6 @@ var
 this
 public
 func
-private
 extends
 param
 if

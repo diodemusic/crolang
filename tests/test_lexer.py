@@ -1,7 +1,9 @@
-from crolang.lexer import Token, lex
+from crolang.lexer import scanner, token_classes
 from crolang.source import SourceFile
 
-tokens: list[Token] = lex(source=SourceFile(name="bird.cro", text="!= ! , . {} ()"))
+tokens: list[token_classes.Token] = scanner.lex(
+    source=SourceFile(name="bird.cro", text="!= ! , . {} () = == ===")
+)
 
 for i in range(len(tokens)):
     print(f"Token {i}: {tokens[i]}")

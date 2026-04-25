@@ -65,3 +65,51 @@ class EqualsEquals(Token): ...
 
 @dataclass(frozen=True)
 class EqualsEqualsEquals(Token): ...
+
+
+@dataclass(frozen=True)
+class Plus(Token): ...
+
+
+@dataclass(frozen=True)
+class Star(Token): ...
+
+
+@dataclass(frozen=True)
+class Percent(Token): ...
+
+
+@dataclass(frozen=True)
+class Caret(Token): ...
+
+
+@dataclass(frozen=True)
+class Minus(Token): ...
+
+
+@dataclass(frozen=True)
+class Arrow(Token): ...
+
+
+@dataclass(frozen=True)
+class Question(Token): ...
+
+
+@dataclass(frozen=True)
+class QuestionDot(Token): ...
+
+
+@dataclass(frozen=True)
+class LessThan(Token): ...
+
+
+@dataclass(frozen=True)
+class LessThanEquals(Token): ...
+
+
+@dataclass(frozen=True)
+class GreaterThan(Token): ...
+
+
+@dataclass(frozen=True)
+class GreaterThanEquals(Token): ...

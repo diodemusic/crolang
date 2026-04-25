@@ -78,6 +78,46 @@ class Scanner:
                         )
                 else:
                     self.tokens.append(token_classes.Equals(span=self.construct_span()))
+            case "+":
+                self.tokens.append(token_classes.Plus(span=self.construct_span()))
+            case "*":
+                self.tokens.append(token_classes.Star(span=self.construct_span()))
+            case "%":
+                self.tokens.append(token_classes.Percent(span=self.construct_span()))
+            case "^":
+                self.tokens.append(token_classes.Caret(span=self.construct_span()))
+            case "-":
+                if self.ahead_matches(expected=">"):
+                    self.tokens.append(token_classes.Arrow(span=self.construct_span()))
+                else:
+                    self.tokens.append(token_classes.Minus(span=self.construct_span()))
+            case "?":
+                if self.ahead_matches(expected="."):
+                    self.tokens.append(
+                        token_classes.QuestionDot(span=self.construct_span())
+                    )
+                else:
+                    self.tokens.append(
+                        token_classes.Question(span=self.construct_span())
+                    )
+            case "<":
+                if self.ahead_matches(expected="="):
+                    self.tokens.append(
+                        token_classes.LessThanEquals(span=self.construct_span())
+                    )
+                else:
+                    self.tokens.append(
+                        token_classes.LessThan(span=self.construct_span())
+                    )
+            case ">":
+                if self.ahead_matches(expected="="):
+                    self.tokens.append(
+                        token_classes.GreaterThanEquals(span=self.construct_span())
+                    )
+                else:
+                    self.tokens.append(
+                        token_classes.GreaterThan(span=self.construct_span())
+                    )
             case _:
                 ...
 

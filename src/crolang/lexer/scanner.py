@@ -118,6 +118,16 @@ class Scanner:
                     self.tokens.append(
                         token_classes.GreaterThan(span=self.construct_span())
                     )
+            case c if c.isdigit():
+                while self.peek().isdigit():
+                    _ = self.advance()
+
+                self.tokens.append(
+                    token_classes.IntLiteral(
+                        span=self.construct_span(),
+                        value=int(self.source.text[self.start : self.current]),
+                    )
+                )
             case _:
                 ...
 

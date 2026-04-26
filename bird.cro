@@ -1,45 +1,45 @@
-class Bird(species: String) {
-    var this.airborne: Bool = false
+class Bird(pub species: String) {
+    var this.airborne: Bool = false;
 
-    public func takeOff() -> Nil {
-        this.airborne = true
+    pub fn takeOff() -> Nil {
+        this.airborne = true;
     }
 
-    public func describe() -> String {
+    pub fn describe() -> String {
         "a " + this.species
     }
 }
 
-class Crow(name: String, intelligence: Int, private secret: Int) extends Bird("corvus") {
-    var this.mood: String = "curious"
-    private this.tally: Int = 0
+class Crow(pub name: String, intelligence: Int, secret: Int) is Bird("corvus") {
+    pub var this.mood: String = "curious";
+    var this.tally: Int = 0;
 
-    public func solve(puzzle: Puzzle) -> Bool {
+    pub fn solve(puzzle: Puzzle) -> Bool {
         if this.intelligence > puzzle.difficulty {
-            this.mood = "smug"
-            this.tally = this.tally + 1
+            this.mood = "smug";
+            this.tally = this.tally + 1;
             true
         } else {
-            this.mood = "frustrated"
+            this.mood = "frustrated";
             false
         }
     }
 
-    public func greet(other: Crow?) -> String? {
+    pub fn greet(other: Crow?) -> String? {
         other?.name
     }
 
-    func secretPlan() -> Int {
+    fn secretPlan() -> Int {
         this.secret * 2
     }
 }
 
-edgar: Crow = Crow("Edgar", 9, 42)
-puzzle: Puzzle = Puzzle(7)
+edgar: Crow = Crow("Edgar", 9, 42);
+puzzle: Puzzle = Puzzle(7);
 
 if edgar.solve(puzzle) {
-    edgar.takeOff()
+    edgar.takeOff();
 }
 
-friend: Crow? = nil
-greeting: String? = edgar.greet(friend)
+friend: Crow? = nil;
+greeting: String? = edgar.greet(friend);

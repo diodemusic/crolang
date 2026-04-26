@@ -6,9 +6,9 @@
 class
 var
 this
-public
-func
-extends
+pub
+fn
+is
 param
 if
 else
@@ -30,6 +30,7 @@ nil
 ,
 .
 :
+;
 =
 ->
 ?
@@ -73,8 +74,7 @@ NilLiteral
 
 ```txt
 IDENTIFIER
-NEWLINE
 EOF
-whitespace is discarded
+whitespace (including newlines) is discarded
 comments are supported with // 
 ```
